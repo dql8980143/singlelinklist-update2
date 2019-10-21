@@ -38,4 +38,12 @@ public:
 	void importDatafromfile();//从文本文件导入数据创建单链表
 
 	void functionDisplay();//打印单链表功能菜单
+
+	int getNodenum()const;//求单链表结点总数(头结点除外)
+
+	void bubbleSort();//单链表冒泡排序函数
+
+	void selectionSort();//单链表选择法排序函数
+
+	int binarySearch(int e)const;//二分查找函数
 };

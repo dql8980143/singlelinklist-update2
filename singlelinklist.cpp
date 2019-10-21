@@ -213,14 +213,184 @@ void List::functionDisplay()
 	char* p[]={"1-单链表初始化功能","2-前插法创建单链表功能","3-后插法创建单链表功能",
 		"4-打印输出单链表功能","5-单链表的取值功能","6-单链表的查找功能",
 		"7-单链表的插入功能","8-单链表的删除功能","9-单链表数据存储至文本文件功能",
-		"10-从文本文件导入数据创建单链表功能","11-打印单链表功能菜单功能"};
+		"10-从文本文件导入数据创建单链表功能","11-打印单链表功能菜单功能",
+		"12-求单链表结点总数功能","13-单链表冒泡排序功能","14-单链表的选择法排序功能",
+	"15-单链表的二分查找功能"};
 	int i;
-	for(i=0;i<11;i++)
+	for(i=0;i<15;i++)
 	{
 		cout<<p[i]<<endl;
 	}
 	cout<<str<<endl;
 }
+
+//求单链表结点总数(头结点除外)
+int List::getNodenum()const
+{
+	cout<<"执行求单链表结点总数功能"<<endl;
+	list* p=S->next;
+	int i=0;
+	do
+	{
+		i++;
+		p=p->next;
+	}while(p);
+	return i;
+}
+
+//单链表冒泡排序函数
+void List::bubbleSort()
+{
+	cout<<"执行单链表冒泡排序功能"<<endl;
+	int num=getNodenum();
+	bool select;
+	cout<<"输入1-从小到大，0-从大到小:"<<endl;
+	cin>>select;
+	list* p;
+	list* q;
+	int tmp;
+	int i,j;
+	if(select)
+	{
+		cout<<"从小到大排序"<<endl;
+		for(i=0;i<num-1;i++)
+		{
+			p=S->next;
+			q=p->next;
+			for(j=0;j<num-1-i;j++)
+			{
+				if(p->data>q->data)
+				{
+					tmp=q->data;
+					q->data=p->data;
+					p->data=tmp;
+				}
+				p=p->next;
+				q=p->next;
+			}
+		}
+	}
+	else
+	{
+		cout<<"从大到小排序"<<endl;
+		for(i=0;i<num-1;i++)
+		{
+			p=S->next;
+			q=p->next;
+			for(j=0;j<num-1-i;j++)
+			{
+				if(p->data<q->data)
+				{
+					tmp=q->data;
+					q->data=p->data;
+					p->data=tmp;
+				}
+				p=p->next;
+				q=p->next;
+			}
+		}
+	}
+}
+
+//单链表选择法排序函数
+void List::selectionSort()
+{
+	cout<<"执行选择法排序功能"<<endl;
+	int num=getNodenum();
+	bool select;
+	cout<<"输入1-从小到大，0-从大到小:"<<endl;
+	cin>>select;
+	list* p=S;
+	list* q;
+	int i,j;
+	int tmp;
+	if(select)
+	{
+		cout<<"从小到大排序"<<endl;
+		for(i=0;i<num-1;i++)
+		{
+			p=p->next;
+			q=p->next;
+			for(j=i+1;j<num;j++)
+			{
+				if(p->data>q->data)
+				{
+					tmp=q->data;
+					q->data=p->data;
+					p->data=tmp;
+				}
+				q=q->next;
+			}
+		}
+	}
+	else
+	{
+		cout<<"从大到小排序"<<endl;
+		for(i=0;i<num-1;i++)
+		{
+			p=p->next;
+			q=p->next;
+			for(j=i+1;j<num;j++)
+			{
+				if(p->data<q->data)
+				{
+					tmp=q->data;
+					q->data=p->data;
+					p->data=tmp;
+				}
+				q=q->next;
+			}
+		}
+	}
+}
+
+int List::binarySearch(int e)const
+{
+	cout<<"执行二分查找功能"<<endl;
+	int num=getNodenum();
+	int right,left,mid;
+	left=1;
+	right=num;
+	list* p;
+	int i;
+	bool judge=false;
+	int locate;
+	do
+	{
+		mid=(left+right)/2;
+		i=0;
+		p=S;
+		do
+		{
+			i++;
+			p=p->next;
+		}while(i<mid);
+		if(e==p->data)
+		{
+			locate=mid;
+			judge=true;
+			break;
+		}
+		else if(e<p->data)
+			right=mid-1;
+		else
+			left=mid+1;
+	}while(left<=right);
+
+	if(judge)
+		return locate;
+	else
+	{
+		printf("数值%d不在此单链表中\n",e);
+		Sleep(1000);
+		exit(7);
+	}
+}
+		
+		
+
+
+
 
 	
 		

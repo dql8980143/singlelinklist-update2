@@ -51,6 +51,16 @@ int main()
 			singlelist.importDatafromfile();break;
 		case 11:
 			singlelist.functionDisplay();break;
+		case 12:
+			printf("单链表的结点数(头结点除外):%d\n",singlelist.getNodenum());break;
+		case 13:
+			singlelist.bubbleSort();break;
+		case 14:
+			singlelist.selectionSort();break;
+		case 15:
+			cout<<"请输入查询的数值e:";
+			cin>>e;
+			printf("数值%d在单链表的第%d个位置\n",e,singlelist.binarySearch(e));break;
 		default:
 			cout<<"输入的功能编号不合理"<<endl;
 		}
